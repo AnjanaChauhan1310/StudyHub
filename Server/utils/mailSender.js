@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const mailSender = async (email, title, body) =>{
+const mailSender = async (email, title, body, replyTo = null) =>{
     try {
         let transporter = nodemailer.createTransport({
             host: process.env.MAIL_HOST,
@@ -11,17 +11,24 @@ const mailSender = async (email, title, body) =>{
             }
           })
 
-          let info = await transporter.sendMail({
-            from: "Yash Sarode - StudyHub" , // sender address
-            to: `${email}`, 
-            subject: `${title}`, 
+          let mailOptions = {
+            from: "StudyHub Support", // sender address
+            to: `${email}`,
+            subject: `${title}`,
             html: `${body}`, // plain text body
-          });
+          };
+
+          if (replyTo) {
+            mailOptions.replyTo = replyTo;
+          }
+
+          let info = await transporter.sendMail(mailOptions);
 
             return info;
         
     } catch (error) {
         console.log("Error in mailSender", error.message);
+        throw error; // Propagate error
     }
 }
 
