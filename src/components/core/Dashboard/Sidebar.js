@@ -28,7 +28,7 @@ const Sidebar = () => {
 
   return (
     <>
-        <div className='flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10'>
+        <div className='hidden md:flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10'>
             <div className='flex flex-col'>
                 {sidebarLinks.map((link)=>{
                         if (link.type && user?.accountType !== link.type) return null;
@@ -46,7 +46,10 @@ const Sidebar = () => {
                         text2: "You will be logged out of your account.",
                         btn1Text: "Logout",
                         btn2Text: "Cancel",
-                        btn1Handler: ()=> dispatch(logout(navigate)),
+                        btn1Handler: () => {
+                            dispatch(logout(navigate))
+                            setConfirmationModal(null)
+                        },
                         btn2Handler: ()=> setConfirmationModal(null),
                     })
                 }}

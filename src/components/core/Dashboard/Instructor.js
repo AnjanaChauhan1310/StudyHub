@@ -55,8 +55,8 @@ const Instructor = () => {
       loading ? (
       <div className="spinner"></div>
     ) : courses.length > 0 ? (
-      <div>
-        <div className="my-4 flex h-[450px] space-x-4">
+      <div className='flex flex-col gap-y-10'>
+        <div className="my-4 flex flex-col-reverse lg:flex-row lg:h-[450px] gap-4">
           {/* Render chart / graph */}
           {totalAmount > 0 || totalStudents > 0 ? (
             <InstructorChart courses={instructorData} />
@@ -73,37 +73,29 @@ const Instructor = () => {
           {/* Total Statistics */}
           <div className="flex min-w-[250px] flex-col rounded-md bg-richblack-800 p-6 shadow-[0px_0px_20px_rgba(0,0,0,0.5)] border border-richblack-700">
             <p className="text-xl font-bold text-richblack-5">Statistics</p>
-            <div className="mt-4 space-y-6">
-              <div className="group relative cursor-help">
+            <div className="mt-4 flex flex-row flex-wrap lg:flex-col lg:space-y-6 gap-6">
+              <div className="group relative cursor-help flex-1">
                 <p className="text-lg text-richblack-300 group-hover:text-yellow-50 transition-colors">Total Courses</p>
-                <p className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-50 to-yellow-200">
+                <p className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-50 to-yellow-200">
                   {courses.length}
                 </p>
-                <div className="absolute -top-10 left-0 hidden group-hover:flex w-max bg-richblack-900 text-richblack-5 text-xs px-3 py-2 rounded-md border border-richblack-700 z-[100] shadow-xl">
-                    Total courses you have created so far.
-                </div>
               </div>
-              <div className="group relative cursor-help">
+              <div className="group relative cursor-help flex-1">
                 <p className="text-lg text-richblack-300 group-hover:text-[#05A77B] transition-colors">Total Students</p>
-                <p className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#05A77B] to-caribbeangreen-100">
+                <p className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#05A77B] to-caribbeangreen-100">
                   {totalStudents}
                 </p>
-                <div className="absolute -top-10 left-0 hidden group-hover:flex w-max bg-richblack-900 text-richblack-5 text-xs px-3 py-2 rounded-md border border-richblack-700 z-[100] shadow-xl">
-                    Total students enrolled across all your courses.
-                </div>
               </div>
-              <div className="group relative cursor-help">
+              <div className="group relative cursor-help flex-1">
                 <p className="text-lg text-richblack-300 group-hover:text-[#47A5C5] transition-colors">Total Income</p>
-                <p className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#47A5C5] to-blue-100">
+                <p className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#47A5C5] to-blue-100">
                   ₹{totalAmount.toLocaleString()}
                 </p>
-                <div className="absolute -top-10 left-0 hidden group-hover:flex w-max bg-richblack-900 text-richblack-5 text-xs px-3 py-2 rounded-md border border-richblack-700 z-[100] shadow-xl">
-                    Total revenue earned from your courses.
-                </div>
               </div>
             </div>
           </div>
         </div>
+        
         <div className="rounded-md bg-richblack-800 p-6">
           {/* Render 3 courses */}
           <div className="flex items-center justify-between">
@@ -112,9 +104,9 @@ const Instructor = () => {
               <p className="text-xs font-semibold text-yellow-50">View All</p>
             </Link>
           </div>
-          <div className="my-4 flex items-start space-x-6">
+          <div className="my-4 flex flex-col md:flex-row items-start gap-6">
             {courses.slice(0, 3).map((course) => (
-              <div key={course._id} className="w-1/3">
+              <div key={course._id} className="w-full md:w-1/3">
                 <img
                   src={course.thumbnail}
                   alt={course.courseName}

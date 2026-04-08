@@ -3,6 +3,10 @@ import {HomePageExplore} from '../../../data/homepage-explore'
 import HighlightText from './HighlightText';
 import { useState } from 'react';
 import CourseCard from './CourseCard';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import { FreeMode } from 'swiper/modules';
 const tabsName = [
     "Free",
     "New to coding",
@@ -64,22 +68,40 @@ const ExploreMore = () => {
       {/* Gap Div */}
       <div className='hidden lg:block lg:h-[200px]'></div>
 
-      {/* course card ka group */}   
-      <div className='lg:absolute gap-10 justify-center lg:gap-0 flex lg:justify-between 
-      flex-wrap w-full lg:left-1 lg:-translate-y-[50%] text-black 
-      lg:mb-0  mb-9 lg:px-0 px-3'>
-        {
-            courses.map(  (element, index) => {
-                return (
-                    <CourseCard 
+      {/* course card slider for mobile and grid for desktop */}   
+      <div className='lg:absolute lg:top-[100%] lg:left-[50%] lg:translate-x-[-50%] lg:translate-y-[-50%] w-full mb-10 lg:mb-0'>
+        {/* Mobile Slider */}
+        <div className='lg:hidden'>
+            <Swiper
+                slidesPerView={1.1}
+                spaceBetween={20}
+                freeMode={true}
+                modules={[FreeMode]}
+                className="px-4"
+            >
+                {courses.map((element, index) => (
+                    <SwiperSlide key={index}>
+                        <CourseCard 
+                            cardData={element}
+                            currentCard={currentCard}
+                            onClick={() => {setCurrentCard(element.heading)}}
+                        />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </div>
+
+        {/* Desktop Grid */}
+        <div className='hidden lg:flex flex-row justify-between w-full gap-10'>
+            {courses.map((element, index) => (
+                <CourseCard 
                     key={index}
-                    cardData = {element}
-                    currentCard = {currentCard}
-                    onClick = {()=>{setCurrentCard(element.heading)}}
-                    />
-                )
-            } )
-        }
+                    cardData={element}
+                    currentCard={currentCard}
+                    onClick={() => {setCurrentCard(element.heading)}}
+                />
+            ))}
+        </div>
       </div>
     </div>
   )

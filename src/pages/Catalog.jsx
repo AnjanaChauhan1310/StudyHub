@@ -93,7 +93,7 @@ const Catalog = () => {
         <>
             {/* Header Section */}
             <div className=" box-content bg-richblack-800 px-4">
-                <div className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
+                <div className="mx-auto flex min-h-[300px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
                     <p className="text-sm text-richblack-300">{`Home / Catalog / `}
                         <span className="text-yellow-25">
                             {catalogPageData?.name}
@@ -101,8 +101,8 @@ const Catalog = () => {
                     </p>
                     <div className='flex flex-row justify-between items-start'>
                         <div className='flex flex-col gap-4'>
-                            <p className="text-3xl text-richblack-5"> {catalogPageData?.name} </p>
-                            <p className="max-w-[870px] text-richblack-200"> {catalogPageData?.description}</p>
+                            <p className="text-2xl md:text-3xl text-richblack-5"> {catalogPageData?.name} </p>
+                            <p className="max-w-[870px] text-richblack-200 text-sm md:text-base"> {catalogPageData?.description}</p>
                         </div>
                         {/* Related Resources - If any */}
                         <div className='hidden lg:flex flex-col gap-2'>
@@ -119,12 +119,12 @@ const Catalog = () => {
                 </div>
             </div>
 
-            <div className='mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent'>
+            <div className='mx-auto box-content w-full max-w-maxContentTab px-6 py-12 lg:max-w-maxContent lg:px-0'>
                 {/* section1: Courses to get you started */}
-                <div className="section_heading text-richblack-5 text-4xl font-bold">Courses to get you started</div>
-                <div className="my-4 flex border-b border-b-richblack-600 text-sm">
+                <div className="section_heading text-richblack-5 text-3xl md:text-4xl font-bold mb-6">Courses to get you started</div>
+                <div className="my-6 flex border-b border-b-richblack-600 text-sm">
                     <p
-                        className={`px-4 py-2 ${
+                        className={`px-6 py-2 ${
                             active === 1
                                 ? "border-b border-b-yellow-25 text-yellow-25"
                                 : "text-richblack-50"
@@ -134,7 +134,7 @@ const Catalog = () => {
                         Most Popular
                     </p>
                     <p
-                        className={`px-4 py-2 ${
+                        className={`px-6 py-2 ${
                             active === 2
                                 ? "border-b border-b-yellow-25 text-yellow-25"
                                 : "text-richblack-50"
@@ -171,12 +171,10 @@ const Catalog = () => {
                 {/* section3: Frequently Bought Together */}
                 <div className="py-12">
                     <div className="section_heading text-richblack-5 text-4xl font-bold mb-8">Frequently Bought Together</div>
-                    <div className='grid grid-cols-1 gap-6 lg:grid-cols-2'>
+                    <div className='py-8'>
                         {
                             catalogPageData?.mostSellingCourses && catalogPageData.mostSellingCourses.length > 0 ? (
-                                catalogPageData.mostSellingCourses.slice(0, 4).map((course, index) => (
-                                    <CourseCard course={course} key={index} Height={"h-[400px]"}/>
-                                ))
+                                <CourseSlider Courses={catalogPageData.mostSellingCourses} />
                             ) : (
                                 <p className='text-richblack-50 text-xl'>No most selling courses available</p>
                             )
