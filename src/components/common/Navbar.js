@@ -154,7 +154,7 @@ const Navbar = () => {
                                                         key={i} 
                                                         to={`/catalog/${sub.name.split(" ").join("-").toLowerCase()}`}
                                                         onClick={() => setIsMenuOpen(false)}
-                                                        className='text-richblack-25'
+                                                        className='text-richblack-300'
                                                     >
                                                         {sub.name}
                                                     </Link>
