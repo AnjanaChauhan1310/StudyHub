@@ -5,6 +5,8 @@ const mailSender = async (email, title, body, replyTo = null) =>{
     try {
         let transporter = nodemailer.createTransport({
             host: process.env.MAIL_HOST,
+            port: 587,
+            secure: false,
             auth: {
               user: process.env.MAIL_USER,
               pass: process.env.MAIL_PASS,
@@ -12,7 +14,7 @@ const mailSender = async (email, title, body, replyTo = null) =>{
           })
 
           let mailOptions = {
-            from: "StudyHub Support", // sender address
+            from: `StudyHub | CodeHelp <${process.env.MAIL_USER}>`, // sender address
             to: `${email}`,
             subject: `${title}`,
             html: `${body}`, // plain text body
