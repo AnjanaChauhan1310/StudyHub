@@ -47,8 +47,8 @@ const Navbar = () => {
     }
 
     return (
-        <div className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 bg-richblack-800 transition-all duration-300`}>
-            <div className='flex w-11/12 max-w-maxContent items-center justify-between'>
+        <div className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 bg-richblack-800 transition-all duration-300 z-[1000]`}>
+            <div className='flex w-11/12 max-w-[1160px] items-center justify-between'>
                 {/* Logo */}
                 <Link to="/" onClick={() => setIsMenuOpen(false)}>
                     <img src={logo} alt="Logo" width={160} height={32} loading='lazy' />

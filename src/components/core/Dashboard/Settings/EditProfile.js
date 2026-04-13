@@ -31,12 +31,12 @@ export default function EditProfile() {
     <>
       <form onSubmit={handleSubmit(submitProfileForm)}>
         {/* Profile Information */}
-        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
-          <h2 className="text-lg font-semibold text-richblack-5">
+        <div className="my-10 flex flex-col gap-y-6 rounded-xl border-[1px] border-richblack-700 bg-richblack-800 p-8 md:px-12 shadow-lg shadow-richblack-900/40">
+          <h2 className="text-xl font-bold text-richblack-5 border-b border-richblack-700 pb-4">
             Profile Information
           </h2>
           
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Display Name / First Name */}
             <div className="flex flex-col gap-2">
               <label htmlFor="firstName" className="lable-style">
@@ -139,23 +139,25 @@ export default function EditProfile() {
               )}
             </div>
 
-            {/* Contact Number */}
             <div className="flex flex-col gap-2">
               <label htmlFor="contactNumber" className="lable-style">
                 Phone Number
               </label>
-              <div className="flex gap-2">
-                 <select className="form-style w-[80px]">
-                    <option>+91</option>
-                    <option>+1</option>
-                    <option>+44</option>
+              <div className="flex gap-4">
+                 <select 
+                    className="form-style w-[90px]"
+                    {...register("countryCode")}
+                 >
+                    <option value="+91">+91</option>
+                    <option value="+1">+1</option>
+                    <option value="+44">+44</option>
                  </select>
                  <input
                     type="tel"
                     name="contactNumber"
                     id="contactNumber"
                     placeholder="12345 67890"
-                    className="form-style flex-1"
+                    className="form-style w-[calc(100%-100px)]"
                     {...register("contactNumber", {
                         required: { value: true, message: "Required" },
                         maxLength: { value: 12, message: "Invalid" },
