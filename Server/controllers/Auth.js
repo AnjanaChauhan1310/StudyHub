@@ -163,7 +163,7 @@ exports.login = async (req,res) => {
         if (!existingUser) {
             return res.status(400).json({
                 success:false,
-                message:'Email not registered',
+                message:'User is not registered, please Signup first',
             })
         }
 
@@ -197,7 +197,7 @@ exports.login = async (req,res) => {
         else {
             return res.status(401).json({
                 success:false,
-                message:'Password is incorrect',
+                message:'Password is incorrect, please try again',
             });
         }
 
